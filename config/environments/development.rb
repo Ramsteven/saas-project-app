@@ -1,7 +1,6 @@
 Rails.application.configure do
    
   # devise says to define default url
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # set up for email sending even in dev mode
   # Don't care if the mailer can't send
