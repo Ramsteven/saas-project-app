@@ -10,7 +10,7 @@ class HomeController < ApplicationController
       end
 
       @tenant = Tenant.current_tenant
-      params[:tenand_id] = tenan.id
+      params[:tenant_id] = @tenant.id
     end
   end
 end
