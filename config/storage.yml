@@ -6,7 +6,7 @@ local:
   service: S3
   access_key_id: <%= Rails.application.credentials.dig(:development, :access_key_id) %>
   secret_access_key: <%= Rails.application.credentials.dig(:development, :secret_access_key) %>
-  s3_region: 'us-east-1'
+  region: us-east-1
   bucket: <%= Rails.application.credentials.dig(:development, :s3_bucket) %>
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
@@ -14,7 +14,7 @@ amazon:
   service: S3
   access_key_id: <%= Rails.application.credentials.dig(:production, :access_key_id) %>
   secret_access_key: <%= Rails.application.credentials.dig(:production, :secret_access_key) %>
-  s3_region: 'us-east-1'
+  region: us-east-1
   bucket: <%= Rails.application.credentials.dig(:production, :s3_bucket) %>
 # Remember not to checkin your GCS keyfile to a repository
 # google:
