@@ -1,5 +1,5 @@
 class Artifact < ApplicationRecord
-  before_save :object_uploaded?
+  before_save :upload_to_s3
   attr_accessor :upload
   belongs_to :project
 

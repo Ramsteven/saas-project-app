@@ -12,7 +12,7 @@ gem 'milia'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem 'jquery-rails'
-gem 'aws-sdk-s3'
+gem 'aws-sdk'
 gem 'prettier'
 gem 'bootstrap-datepicker-rails'
 # Use Puma as the app server
