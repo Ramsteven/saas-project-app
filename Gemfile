@@ -15,6 +15,7 @@ gem 'jquery-rails'
 gem "aws-sdk"
 gem 'prettier'
 gem 'bootstrap-datepicker-rails'
+gem 'stripe'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
