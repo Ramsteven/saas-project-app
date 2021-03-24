@@ -13,7 +13,7 @@ class Project < ApplicationRecord
   def self.by_plan_and_tenant(tenant_id)
     tenant = Tenant.find(tenant_id)
     if tenant.plan == 'premium'
-      tenant.project
+      tenant.projects
     else
       tenant.projects.order(:id).limit(1)
     end
