@@ -86,39 +86,74 @@
       <span class="description">(Unique name for group or organization for the new account)</span>
       <%= w.text_field :name, required: true, class: "form-control" %>
     </div>
-    <div class="form-group col-md-6 no-right-padding">
+    <div class="form-group col-md-6 no-right-padding m-b-0">
       <%= w.label :plan %>
       <%= w.select :plan, options_for_select(Plan.options, params[:plan]), {},
           required: true, class: "form-control" %>
     </div>
   <% end %>
-  <%= fields_for :payment do |p| %>
-    <div class="form-row">
-      <div class="form-group col-md-4 no-left-padding">
-        <%= p.label :card_number, "Card number", data: {stripe: "label"} %>
-        <%= p.text_field :card_number, class: "form-control", required: true, data: {stripe: "number"}  %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= p.label :card_cvc, "CVV", data: {stripe: "label"} %>
-        <%= p.text_field :card_cvc, class: "form-control", required: true, data: {stripe: "cvc"}  %>
-      </div>
-      <div class="form-group col-md-6 no-left-padding">
-        <div class="col-md-12">
-          <%= p.label :card_expires, "Card expires", data: {stripe: "label"} %>
-        </div>
-        <div class="col-md-4">
-          <%= p.select :card_expires_month, options_for_select(Payment.month_options), 
-              {include_blank: "Month"}, "data-stripe": "exp-month", class: "form-control",
-              required: true %>
-        </div>
-        <div class="col-md-4">
-          <%= p.select :card_expires_year, options_for_select(Payment.year_options), 
-              {include_blank: "Year"}, "data-stripe": "exp-year", class: "form-control",
-              required: true %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+        <%= fields_for( :payment ) do |p| %>
+          <div class="row col-md-12">
+            <div class="form-group col-md-4 no-left-padding">
+              <%= p.label :card_number, "Card Number", data: { stripe: 'label' } %>
+              <%= p.text_field :card_number, class: "form-control", required: true,
+                               data: { stripe: 'number' }  %>
+            </div>
+            <div class="form-group col-md-2">
+              <%= p.label :card_cvv, "Card CVV", data: { stripe: 'label' } %>
+              <%= p.text_field :card_cvv, class: "form-control", required: true,
+                               data: { stripe: 'cvv' }  %>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="col-md-12">
+                <%= p.label :card_expires, "Card Expires", data: { stripe: 'label' } %>
+              </div>
+              <div class="col-md-3">
+                <%= p.select :card_expires_month,
+                             options_for_select(Payment.month_options),
+                             { include_blank: 'Month' },
+                             "data-stripe" => "exp-month",
+                             class: "form-control", required: true  %>
+              </div>
+              <div class="col-md-3">
+                <%= p.select :card_expires_year,
+                             options_for_select(Payment.year_options.push),
+                               { include_blank: 'Year' },
+                             class: "form-control",
+                             data: { stripe: "exp-year"}, required: true  %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+
+  <%# <%= fields_for :payment do |p| %1> %>
+  <%#   <div class="row col-m-12"> %>
+  <%#     <div class="form-group col-md-4 no-left-padding"> %>
+  <%#       <%= p.label :card_number, "Card number", data: {stripe: "label"} %1> %>
+  <%#       <%= p.text_field :card_number, class: "form-control", required: true, data: {stripe: "number"}  %1> %>
+  <%#     </div> %>
+  <%#     <div class="form-group col-md-2"> %>
+  <%#       <%= p.label :card_cvc, "CVV", data: {stripe: "label"} %1> %>
+  <%#       <%= p.text_field :card_cvc, class: "form-control", required: true, data: {stripe: "cvc"}  %1> %>
+  <%#     </div> %>
+  <%#     <div class="form-group col-md-6 no-left-padding"> %>
+  <%#       <div class="col-md-12"> %>
+  <%#         <%= p.label :card_expires, "Card expires", data: {stripe: "label"} %1> %>
+  <%#       </div> %>
+  <%#       <div class="col-md-4"> %>
+  <%#         <%= p.select :card_expires_month, options_for_select(Payment.month_options), %> 
+  <%#             {include_blank: "Month"}, "data-stripe": "exp-month", class: "form-control", %>
+  <%#             required: true %1> %>
+  <%#       </div> %>
+  <%#       <div class="col-md-4"> %>
+  <%#         <%= p.select :card_expires_year, options_for_select(Payment.year_options), %> 
+  <%#             {include_blank: "Year"}, "data-stripe": "exp-year", class: "form-control", %>
+  <%#             required: true %1> %>
+  <%#       </div> %>
+  <%#     </div> %>
+  <%#   </div> %>
+  <%# <% end %1> %>
 
   <div class="form-group">
     <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
